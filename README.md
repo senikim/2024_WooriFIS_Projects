@@ -2,6 +2,7 @@
 
 ## 👩‍🏫 1차 기술세미나
 ✅ Topic : 금융권 AI Tasks 소개
+
 ✅ 나의 역할 : Fraud Detection System 소개 및 구현
 
 <img src = "https://github.com/senikim/WooriFIS_Projects/assets/113660954/58bece71-1d22-4d50-a677-9b531adc25fe" width = "800" height = "400"/>
