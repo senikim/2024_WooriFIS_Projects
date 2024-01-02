@@ -2,5 +2,5 @@
 
 ### 1차 기술세미나
 
-![image](https://github.com/senikim/WooriFIS_Projects/assets/113660954/58bece71-1d22-4d50-a677-9b531adc25fe)
+<img src = "![image](https://github.com/senikim/WooriFIS_Projects/assets/113660954/58bece71-1d22-4d50-a677-9b531adc25fe)" width = "200" height = "400"/>
 ![image](https://github.com/senikim/WooriFIS_Projects/assets/113660954/0beebef5-cc44-4df9-8783-d571f4f58d88)
