@@ -1,6 +1,4 @@
-# WooriFIS_Projects
-
-## 👩‍🏫 1차 기술세미나
+# 👩‍🏫 1차 기술세미나
 ✅ Topic : 금융권 AI Tasks 소개
 
 ✅ 나의 역할 : Fraud Detection System 소개 및 구현
