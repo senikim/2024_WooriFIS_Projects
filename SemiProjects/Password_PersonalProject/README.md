@@ -9,8 +9,7 @@
 - interface 까지 만들어서 Class 변수랑 메서드를 적용시켜보고 싶음.
 
 📌 핵심은 다음 코드
-System.out.println(private1.password);
-			// [Error : The field MyPrivate.password is not visible]
-			// [MyPrivate에 생성된 인스턴스 변수인 password을 private으로 접근을 막아두었기 때문에 인스턴스로도 password 변수를 출력할 수 없음]
+
+![image](https://github.com/senikim/WooriFIS_Projects/assets/113660954/ebb802a2-92fd-4383-bc92-032ebc15b4ed)
 
 - 위 코드 돌렸을 때 private 제어 때문에 password가 안보이는 거
