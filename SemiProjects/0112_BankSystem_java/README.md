@@ -1,4 +1,5 @@
 
 🗂 UML
 
-![image](https://github.com/senikim/WooriFIS_Projects/assets/113660954/78ee90be-e1a2-46dc-9495-50e8bf308885)
+![image](https://github.com/senikim/WooriFIS_Projects/assets/113660954/98fd3688-75fc-481b-a696-6303f6a3c121)
+
