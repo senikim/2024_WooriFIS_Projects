@@ -38,7 +38,7 @@ public class LoanAccount extends DwAccount {
             loanBalance = 5000000.0; // 예시로 30,000으로 설정
             this.loanProduct = selectedProduct;
         }
-        Dblog.DbList.add(String.format("%s, %s에 %s님이 계좌를 개설하셨습니다.", LocalDate.now(), LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")), name));
+        Dblog.DbList.add(String.format("%s, %s에 %s님이 대출 계좌를 개설하셨습니다.", LocalDate.now(), LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")), name));
         Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/Dblist.txt");
     }
     
