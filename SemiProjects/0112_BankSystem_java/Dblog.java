@@ -34,12 +34,22 @@ public class Dblog {
         public static void saveArrayListToFile(ArrayList<String> arrayList, String fileName) {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, StandardCharsets.UTF_8, true))) {
                 // ArrayList의 각 요소를 파일에 쓰기
-                for (String data : DbList) {
-                    writer.write(data);
-                    writer.newLine();  // 각 데이터를 새로운 줄에 쓰기
+//                for (String data : DbList) {
+//                    writer.write(data);
+//                    writer.newLine();  // 각 데이터를 새로운 줄에 쓰기
+//                }
+            	// DBList 맨 아래에 있는 문장만 write하면 됨
+                if (!arrayList.isEmpty()) {
+                    String lastElement = arrayList.get(arrayList.size() - 1);
+                    writer.write(lastElement);
+                    writer.newLine();
+                    System.out.println("데이터가 파일에 성공적으로 추가되었습니다.");
+                } else {
+                    System.out.println("ArrayList가 비어있어 추가할 데이터가 없습니다.");
                 }
-
-                System.out.println("데이터가 파일에 성공적으로 추가되었습니다.");
+//            	writer.write(DbList[]);
+//            	writer.newLine();
+//                System.out.println("데이터가 파일에 성공적으로 추가되었습니다.");
             } catch (IOException e) {
                 e.printStackTrace();
             }
