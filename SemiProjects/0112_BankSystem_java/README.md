@@ -15,12 +15,15 @@
 ![image](https://github.com/senikim/WooriFIS_Projects/assets/113660954/de33605b-fdc3-4d62-be27-33b2b1fd7836)
 
 3. 대출신청
+4. 
 ![image](https://github.com/senikim/WooriFIS_Projects/assets/113660954/e98e3f5f-6cd4-44b8-8eb8-9663dcf89428)
 
-4. 송금 : 따로 실행
+5. 송금 : 따로 실행
+   
 ![image](https://github.com/senikim/WooriFIS_Projects/assets/113660954/927c9d91-b631-4e87-97cc-6a24231a2fc0)
 
-6. DBList : 로그데이터 전송
+7. DBList : 로그데이터 전송
+   
 ![image](https://github.com/senikim/WooriFIS_Projects/assets/113660954/e9663f0e-c95c-4af2-b166-4d76206b8a35)
 
    
