@@ -11,16 +11,14 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class DwAccount extends Account {
-	
-	
-	ArrayList<String> dwDbList = Dblog.DbList;
 	// 기존고객 제외, 새로 계좌를 개설한 고객에 대해서만 
 	// -> 처음 잔액은 무조건 0, 입금을 받은 뒤에만 출금/송금 가능한 상태
 	
+	ArrayList<String> dwDbList = Dblog.DbList;
+
 	// 인스턴스 변수
 //	static int balance = 0;
 		// 초기 잔액은 0
-	
 	// 접근 제어어 고려 필요
 	// Q. 아래 변수들이 꼭 인스턴스 변수로 있어야 할까?
 	double depositBill;	
@@ -30,13 +28,12 @@ public class DwAccount extends Account {
 	// 입력된 계좌 list
 	static Map<String, String> accountMap = new HashMap<>();
 	
-	// overloading
+	// 오버로딩
 	DwAccount() {
 		super();
 		DwAccount.accountMap.put(accountNum, name);
 	}
 
-//	accountMap.put(this.name, this.accountNum);
 	
 	// 메서드
 	// 1. 입금
@@ -73,8 +70,6 @@ public class DwAccount extends Account {
 						
 					} else {
 						System.out.println("입금할 금액을 잘못 입력하셨습니다. 다시 입력해 주세요: ");
-				        dwDbList.add(String.format("%s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(), name, accountNum));
-				        Dblog.saveArrayListToFile(dwDbList, "src/banksystem/DwAccountLog.txt");
 					}
 				}
 		
@@ -82,6 +77,8 @@ public class DwAccount extends Account {
 		
 			} else {
 			System.out.println("비밀번호가 틀렸습니다. 다시 입력해 주세요: ");
+	        dwDbList.add(String.format("%s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(), name, accountNum));
+	        Dblog.saveArrayListToFile(dwDbList, "src/banksystem/DwAccountLog.txt");
 		}
 	}
 		
