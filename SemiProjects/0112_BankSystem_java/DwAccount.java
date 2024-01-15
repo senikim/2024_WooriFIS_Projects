@@ -77,7 +77,7 @@ public class DwAccount extends Account {
 		
 			} else {
 			System.out.println("비밀번호가 틀렸습니다. 다시 입력해 주세요: ");
-	        Dblog.DbList.add(String.format("%s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(), name, accountNum));
+	        Dblog.DbList.add(String.format("%s, %s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(),LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")), name, accountNum));
 	        Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/DbList.txt");
 		}
 	}
@@ -132,7 +132,7 @@ public class DwAccount extends Account {
 			flag1 = 0;
 		} else {
 			System.out.println("비밀번호가 틀렸습니다. 비밀번호를 다시 입력해 주세요: ");
-			Dblog.DbList.add(String.format("%s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(), name, accountNum));
+			Dblog.DbList.add(String.format("%s, %s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(),LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")), name, accountNum));
 	        Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/Dblist.txt");
 		}
 		}
@@ -179,13 +179,15 @@ public class DwAccount extends Account {
 					
 					// 남의 계좌에 +
 					account.balance += remittanceBill;
-					flag1 = 0;
 				
 				} else {
 					System.out.println("송금할 계좌번호를 찾을 수 없습니다. 다시 입력해 주세요: ");
-					Dblog.DbList.add(String.format("%s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(), name, accountNum));
-			        Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/Dblist.txt");
 				}
+				flag1 = 0;
+			} else {
+				System.out.println("비밀번호가 틀렸습니다. 비밀번호를 다시 입력해 주세요: ");
+				Dblog.DbList.add(String.format("%s, %s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(),LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")), name, accountNum));
+		        Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/Dblist.txt");
 			}
 		}
 		
@@ -216,12 +218,12 @@ public class DwAccount extends Account {
         System.out.println("현재 계좌 잔액: "+ this.balance);
 	} else {
 		System.out.println("비밀번호가 틀립니다.");
-		Dblog.DbList.add(String.format("%s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(), name, accountNum));
+		Dblog.DbList.add(String.format("%s, %s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(),LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")), name, accountNum));
         Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/Dblist.txt");
 	}
 
 	// 실행
-	Dblog.DbList.add(String.format("%s에 %s님이 계좌 정보를 확인했습니다..", LocalDate.now(), name));
+	Dblog.DbList.add(String.format("%s, %s에 %s님이 계좌 정보를 확인했습니다..", LocalDate.now(), LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")), name));
     Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/Dblist.txt");
 }
 }
