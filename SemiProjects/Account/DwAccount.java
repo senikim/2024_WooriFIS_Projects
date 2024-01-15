@@ -14,7 +14,7 @@ public class DwAccount extends Account {
 	// 기존고객 제외, 새로 계좌를 개설한 고객에 대해서만 
 	// -> 처음 잔액은 무조건 0, 입금을 받은 뒤에만 출금/송금 가능한 상태
 	
-	ArrayList<String> dwDbList = Dblog.DbList;
+//	ArrayList<String> dwDbList = Dblog.DbList;
 
 	// 인스턴스 변수
 //	static int balance = 0;
@@ -77,18 +77,18 @@ public class DwAccount extends Account {
 		
 			} else {
 			System.out.println("비밀번호가 틀렸습니다. 다시 입력해 주세요: ");
-	        dwDbList.add(String.format("%s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(), name, accountNum));
-	        Dblog.saveArrayListToFile(dwDbList, "src/banksystem/DwAccountLog.txt");
+	        Dblog.DbList.add(String.format("%s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(), name, accountNum));
+	        Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/DbList.txt");
 		}
 	}
 		
 		// deposit 로그를 logDB에 데이터 전송
-		dwDbList.add(LocalDate.now()+", "+LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))+"에 "+this.name+"고객님이 고객님의 계좌에 "+this.depositBill+"원 을 입금하셨습니다.");
-		Dblog.saveArrayListToFile(dwDbList, "src/banksystem/DwAccountLog.txt");
+		Dblog.DbList.add(LocalDate.now()+", "+LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))+"에 "+this.name+"고객님이 고객님의 계좌에 "+this.depositBill+"원 을 입금하셨습니다.");
+		Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/DbList.txt");
 	}
 	
 	
-	
+
 	// 2. 출금
 		// 1) 출금할 금액 입력 : this.balance > 출금금액 일때만 작동
 		// 2) 현재 잔액 출력
@@ -132,15 +132,15 @@ public class DwAccount extends Account {
 			flag1 = 0;
 		} else {
 			System.out.println("비밀번호가 틀렸습니다. 비밀번호를 다시 입력해 주세요: ");
-	        dwDbList.add(String.format("%s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(), name, accountNum));
-	        Dblog.saveArrayListToFile(dwDbList, "src/banksystem/DwAccountLog.txt");
+			Dblog.DbList.add(String.format("%s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(), name, accountNum));
+	        Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/Dblist.txt");
 		}
 		}
 		
 		// 출금 정보를 LogDB에 전송
-		dwDbList.add(LocalDate.now()+", "+LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))+"에 "+this.name+"고객님이 고객님의 계좌에서 "+this.withdrawBill+"원 을 출금하셨습니다.");
+		Dblog.DbList.add(LocalDate.now()+", "+LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))+"에 "+this.name+"고객님이 고객님의 계좌에서 "+this.withdrawBill+"원 을 출금하셨습니다.");
 //		dwDbList.add(MessageFormat.format("{}, {}에 {}님이 본인 계좌에서 {}원을 출금하셨습니다.", LocalDate.now(), LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")), this.withdrawBill));
-		Dblog.saveArrayListToFile(dwDbList, "src/banksystem/DwAccountLog.txt");
+		Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/Dblist.txt");
 	}
 	
 	// 3. 송금
@@ -183,15 +183,15 @@ public class DwAccount extends Account {
 				
 				} else {
 					System.out.println("송금할 계좌번호를 찾을 수 없습니다. 다시 입력해 주세요: ");
-			        dwDbList.add(String.format("%s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(), name, accountNum));
-			        Dblog.saveArrayListToFile(dwDbList, "src/banksystem/DwAccountLog.txt");
+					Dblog.DbList.add(String.format("%s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(), name, accountNum));
+			        Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/Dblist.txt");
 				}
 			}
 		}
 		
 		// 로그 데이터 전송
-		dwDbList.add(LocalDate.now()+", "+LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))+"에 "+this.name+"고객님이 고객님의 계좌에서 "+account.name+"님 에게 "+this.remittanceBill+"원 을 송금하셨습니다.");
-		Dblog.saveArrayListToFile(dwDbList, "src/banksystem/DwAccountLog.txt");
+		Dblog.DbList.add(LocalDate.now()+", "+LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))+"에 "+this.name+"고객님이 고객님의 계좌에서 "+account.name+"님 에게 "+this.remittanceBill+"원 을 송금하셨습니다.");
+		Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/Dblist.txt");
 	}
 	
 	
@@ -216,12 +216,12 @@ public class DwAccount extends Account {
         System.out.println("현재 계좌 잔액: "+ this.balance);
 	} else {
 		System.out.println("비밀번호가 틀립니다.");
-        dwDbList.add(String.format("%s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(), name, accountNum));
-        Dblog.saveArrayListToFile(dwDbList, "src/banksystem/DwAccountLog.txt");
+		Dblog.DbList.add(String.format("%s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(), name, accountNum));
+        Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/Dblist.txt");
 	}
 
 	// 실행
-	dwDbList.add(String.format("%s에 %s님이 계좌 정보를 확인했습니다..", LocalDate.now(), name));
-    Dblog.saveArrayListToFile(dwDbList, "src/banksystem/DwAccountLog.txt");
+	Dblog.DbList.add(String.format("%s에 %s님이 계좌 정보를 확인했습니다..", LocalDate.now(), name));
+    Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/Dblist.txt");
 }
 }
