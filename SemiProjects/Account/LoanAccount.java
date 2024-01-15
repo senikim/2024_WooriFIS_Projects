@@ -15,7 +15,7 @@ public class LoanAccount extends DwAccount {
     LoanProduct loanProduct;
     LocalDate repayDate;
     
-    ArrayList<String> LoanAccountDbList = Dblog.DbList;
+//    ArrayList<String> LoanAccountDbList = Dblog.DbList;
 
     public LoanAccount() {
     	this.repayDate = LocalDate.now().plusYears(1);
@@ -39,8 +39,8 @@ public class LoanAccount extends DwAccount {
             this.loanProduct = selectedProduct;
         }
         
-        LoanAccountDbList.add(String.format("%s에 %s님이 계좌를 개설하셨습니다.", LocalDate.now(), name));
-        Dblog.saveArrayListToFile(LoanAccountDbList, "src/banksystem/LoanAccountLog.txt");
+        Dblog.DbList.add(String.format("%s에 %s님이 계좌를 개설하셨습니다.", LocalDate.now(), name));
+        Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/Dblist.txt");
     }
     
 
@@ -111,15 +111,15 @@ public class LoanAccount extends DwAccount {
             System.out.println("대출 상환일자: " + repayDate);
     	} else {
     		System.out.println("비밀번호가 틀립니다.");
-            LoanAccountDbList.add(String.format("%s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(), name, accountNum));
-            Dblog.saveArrayListToFile(LoanAccountDbList, "src/banksystem/LoanAccountLog.txt");
+    		Dblog.DbList.add(String.format("%s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(), name, accountNum));
+            Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/Dblist.txt");
     	}
 //    	Dblog.add(LocalDate.now()+", "+LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))+
 //    		"에 "+this.name+"고객님이 고객님의 계좌에서 "+
 //    		this.remittanceBill+"원 을 송금하셨습니다.");
     	// 실행
-        LoanAccountDbList.add(String.format("%s에 %s님이 계좌 정보를 확인했습니다..", LocalDate.now(), name));
-        Dblog.saveArrayListToFile(LoanAccountDbList, "src/banksystem/LoanAccountLog.txt");
+    	Dblog.DbList.add(String.format("%s에 %s님이 계좌 정보를 확인했습니다..", LocalDate.now(), name));
+        Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/Dblist.txt");
     }
 
     private boolean isAgeInRange(int minAge, int maxAge) {
@@ -128,18 +128,18 @@ public class LoanAccount extends DwAccount {
     
     public void run() {
         Scanner scanner = new Scanner(System.in);
-        int userInput;
+        String userInput;
 
         while (true) {
             System.out.println("원하시는 업무를 선택하세요");
             System.out.println("1. 대출 잔액 확인 / 2. 대출 상환");
 
             if (scanner.hasNextInt()) {
-                userInput = scanner.nextInt();
+                userInput = scanner.next();
 
-                if (userInput == 1) {
+                if (userInput.equals("1")) {
                     System.out.println(name + "님의 대출 잔액은 " + loanBalance + "원입니다.");
-                } else if (userInput == 2) {
+                } else if (userInput.equals("2")) {
                     // 대출 상환 로직을 추가할 수 있습니다.
                 } else {
                     System.out.println("1 또는 2가 아닌 값을 입력했습니다. 다시 시도하세요.");
@@ -156,7 +156,7 @@ public class LoanAccount extends DwAccount {
         }
 
         // 반복이 끝나면 사용이 끝날 때 스캐너를 닫아줍니다.
-        scanner.close();
+//        scanner.close();
     }
     
     public void repayment() {
