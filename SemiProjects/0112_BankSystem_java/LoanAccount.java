@@ -38,8 +38,7 @@ public class LoanAccount extends DwAccount {
             loanBalance = 5000000.0; // 예시로 30,000으로 설정
             this.loanProduct = selectedProduct;
         }
-        
-        Dblog.DbList.add(String.format("%s에 %s님이 계좌를 개설하셨습니다.", LocalDate.now(), name));
+        Dblog.DbList.add(String.format("%s, %s에 %s님이 계좌를 개설하셨습니다.", LocalDate.now(), LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")), name));
         Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/Dblist.txt");
     }
     
@@ -111,14 +110,14 @@ public class LoanAccount extends DwAccount {
             System.out.println("대출 상환일자: " + repayDate);
     	} else {
     		System.out.println("비밀번호가 틀립니다.");
-    		Dblog.DbList.add(String.format("%s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(), name, accountNum));
+    		Dblog.DbList.add(String.format("%s, %s에 %s님이 %s계좌의 비밀번호를 틀렸습니다.", LocalDate.now(),LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")), name, accountNum));
             Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/Dblist.txt");
     	}
 //    	Dblog.add(LocalDate.now()+", "+LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))+
 //    		"에 "+this.name+"고객님이 고객님의 계좌에서 "+
 //    		this.remittanceBill+"원 을 송금하셨습니다.");
     	// 실행
-    	Dblog.DbList.add(String.format("%s에 %s님이 계좌 정보를 확인했습니다..", LocalDate.now(), name));
+    	Dblog.DbList.add(String.format("%s, %s에 %s님이 계좌 정보를 확인했습니다..", LocalDate.now(), LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")), name));
         Dblog.saveArrayListToFile(Dblog.DbList, "src/banksystem/Dblist.txt");
     }
 
