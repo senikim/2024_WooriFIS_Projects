@@ -1,8 +1,12 @@
 # 👩‍🏫 1차 기술세미나
-✅ Topic : 금융권 AI Tasks 소개
+### ✅ 주제
+      금융권 AI Tasks 소개
 
-✅ 나의 역할 : Fraud Detection System 소개 및 구현
+### ✅ 나의 역할
+      이상거래탐지(Fraud Detection System) 소개
+      AutoEncoder를 이용한 이상거래 탐지 시스템 구현
 
+### ✅ 조사 내용
 <img src = "https://github.com/senikim/WooriFIS_Projects/assets/113660954/58bece71-1d22-4d50-a677-9b531adc25fe" width = "750" height = "400"/>
 <img src = "https://github.com/senikim/WooriFIS_Projects/assets/113660954/0beebef5-cc44-4df9-8783-d571f4f58d88" width = "750" height = "400"/>
 <img src = "https://github.com/senikim/WooriFIS_Projects/assets/113660954/44811ca9-e8ae-468b-bfe4-dc43bc5163f3" width = "750" height = "400"/>
