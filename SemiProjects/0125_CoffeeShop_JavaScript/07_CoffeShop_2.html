@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shop</title>
+</head>
+<body>
+    <div id="menu-container" img src = ></div>
+    <h2> 주문 접수 </h2>
+    <div id="orderpage"> <h2 id="order"> </h2> </div>
+    <h2> 준비된 음료 받아가세요 </h2>
+    <div id="done"> </div>
+    <h2 > 주문 내역 </h2>
+    <div id="selectedMenu"> </div>
+        <ul id="orderedMenu"></ul>
+
+    <script> 
+        function fetchMenu() {
+            fetch('Coffee.json')
+              .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+                })
+                .then(data => {
+                    Object.keys(data).forEach(category => {
+                        const categoryContainer = document.createElement('div');
+                        categoryContainer.innerHTML = `<h2>${category}</h2>`;
+
+                    Object.entries(data[category]).forEach(([menu, orderTime]) => {
+                        const menuItem = createMenuItem(menu, orderTime);
+                        categoryContainer.appendChild(menuItem);
+                        });
+
+                        document.getElementById('menu-container').appendChild(categoryContainer);
+                    });
+                    
+
+                })
+                .catch(error => console.error('메뉴 불러오기 실패:', error));
+        }
+
+        function createMenuItem(menu, orderTime) {
+            const menuItem = document.createElement('div');
+            menuItem.innerHTML = `
+                <span>${menu}</span>
+                <button onclick="orderCoffee('${menu}', ${orderTime})">주문하기</button>
+            `;
+            return menuItem;
+        }
+
+        function orderCoffee(menu, orderTime) {
+            var orderdocument = document.getElementById("orderpage");
+            var order = `${menu} 주문이 접수되었습니다. 준비에 ${orderTime} 초가 소요됩니다.`
+            orderdocument.innerHTML = "<p>" + order + "</p>";
+
+            setLoading(true);
+
+            setTimeout(() => {
+                setLoading(false);
+                var done = document.getElementById("done");
+                var doneStatement = `주문하신 ${menu}가 나왔습니다!`
+                done.innerHTML = "<p>" + doneStatement + "</p>";
+                addToOrderedMenu(menu);
+            }, orderTime * 1000);
+        }
+
+        function setLoading(isLoading) {
+            console.log(isLoading ? '로딩 중...' : '로딩 완료');
+        }
+
+        function addToOrderedMenu(menu) {
+            const orderedMenuList = document.getElementById("orderedMenu");
+            const listItem = document.createElement("li");
+            listItem.textContent = menu;
+            orderedMenuList.appendChild(listItem);
+        }
+
+        window.onload = fetchMenu;
+    </script>
+</body>
+</html>

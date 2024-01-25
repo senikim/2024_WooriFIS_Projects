@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커피숍 페이지</title>
+</head>
+<body>
+    <div id="menu-container"></div>
+    <h2> 주문 접수 </h2>
+    <div id="orderpage"> <h2 id="order"> </h2> </div>
+    <h2> 준비된 음료 받아가세요 </h2>
+    <div id="done"> </div>
+    <h2 > 주문 내역 </h2>
+    <div id="selectedMenu"> </div>
+        <ul id="orderedMenu"></ul>
+
+    <script>
+        async function fetchMenu() {
+            try {
+                const response = await fetch('coffee.json');
+                const data = await response.json();
+
+                // 데이터에서 카테고리와 메뉴 배열을 가져와서 동적으로 메뉴 생성
+                Object.keys(data).forEach(category => {
+                    const categoryContainer = document.createElement('div');
+                    categoryContainer.innerHTML = `<h2>${category}</h2>`;
+
+                    Object.entries(data[category]).forEach(([menu, orderTime]) => {
+                        const menuItem = document.createElement('div');
+                        menuItem.innerHTML = `
+                            <span>${menu}</span>
+                            <button onclick="orderCoffee('${menu}', ${orderTime}),oderedMenu('${menu}')">주문하기</button>
+                        `;
+                        categoryContainer.appendChild(menuItem);
+                    });
+
+                    document.getElementById('menu-container').appendChild(categoryContainer);
+                });
+            } catch (error) {
+                console.error('메뉴 불러오기 실패:', error);
+            }
+        }
+        const menuArray = [];
+        function oderedMenu(menu){
+            const selectedMenuElement = document.getElementById("selectedMenu");
+            const orderedMenuList = document.getElementById("orderedMenu");
+
+            // selectedMenuElement.innerText = `선택한 메뉴: ${menu}`
+            
+            menuArray.push(menu);
+            
+            menuArray.forEach(menuItem => {
+                const listItem = document.createElement("li");
+                listItem.textContent = menuItem;
+                orderedMenuList.appendChild(listItem);
+            });
+
+            // menuArray.push(`${menu}`);
+            // const menuListElement = document.getElementById("orderedMenu");
+            
+            // menuArray.forEach(menu => {
+            // const listItem = document.createElement("li");
+            // listItem.textContent = menu;
+            // menuListElement.appendChild(listItem);
+            
+            // menuListElement.innerText = `${menuArray}`
+        // });
+
+        }
+        async function orderCoffee(menu, orderTime) {
+            try {
+                var orderdocument = document.getElementById("orderpage");
+                var order = `${menu} 주문이 접수되었습니다. 준비에 ${orderTime} 초가 소요됩니다.`
+                orderdocument.innerHTML = "<p>" + order + "</p>";
+                
+                // alert(`${menu} 주문이 접수되었습니다. 준비에 ${orderTime} 초가 소요됩니다.`);
+
+                // 소요 시간만큼의 로딩 시뮬레이션
+                setLoading(true);
+
+                setTimeout(() => {
+                    setLoading(false);
+                    var done = document.getElementById("done");
+                    var doneStatement = `주문하신 ${menu}가 나왔습니다!`
+                    done.innerHTML = "<p>" + doneStatement + "</p>";
+                    // alert(`주문하신 ${menu}가 나왔습니다!`);
+                }, orderTime * 1000); // orderTime을 밀리초로 변환
+                
+            } catch (error) {
+                console.error('주문 실패:', error);
+            }
+        }
+
+        function setLoading(isLoading) {
+            // 여기에서 로딩 상태에 따른 UI 업데이트를 수행할 수 있습니다.
+            // 예를 들어, 로딩 중일 때 로딩 스피너를 표시하거나 다른 UI를 조절할 수 있습니다.
+            console.log(isLoading ? '로딩 중...' : '로딩 완료');
+        }
+
+        // 페이지 로드 시 메뉴 불러오기
+        window.onload = fetchMenu;
+    </script>
+</body>
+</html>

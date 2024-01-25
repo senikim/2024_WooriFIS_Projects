@@ -1,0 +1,5 @@
+{
+    "coffee" : {"espresso":1, "latte" :1, "americano":1, "frappuccino":4},
+    "tea" : {"chamomile": 7, "rooibos":7, "mint":7, "lemon":7},
+    "bakery" : {"hotdog":10, "sandwich":10, "cookie":10, "financier":10}
+}
